@@ -18,6 +18,7 @@ app.use(
 		credentials: true, // ✅ Allows cookies
 	})
 );
+app.options('*', cors());
 
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 

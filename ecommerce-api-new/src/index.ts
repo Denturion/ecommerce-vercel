@@ -13,7 +13,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(
 	cors({
-		// origin: "http://localhost:5173",
+		// origin: "https://ecommerce-vercel-client.vercel.app",
 		origin: '*',
 		credentials: true, // ✅ Allows cookies
 	})
@@ -115,7 +115,9 @@ connectDB();
 // Start Express server
 const PORT = 3000;
 app.listen(PORT, () => {
-	console.log(`The server is running at http://localhost:${PORT}`);
+	console.log(
+		`The server is running at https://ecommerce-vercel-client.vercel.app:${PORT}`
+	);
 });
 
 export default (req: VercelRequest, res: VercelResponse) => {

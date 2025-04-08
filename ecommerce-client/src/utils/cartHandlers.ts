@@ -10,8 +10,8 @@ export const calculateTotalPrice = (cart: IProduct[]): number => {
 
 export const mapCartToOrderItems = (cart: IProduct[]): IOrderItem[] => {
 	return cart.map((product) => ({
-		id: null, // Order item ID is null for new orders
-		order_id: 0, // Replace with actual order ID if needed
+		id: null,
+		order_id: 0,
 		product_id: product.id!,
 		product_name: product.name,
 		quantity: product.quantity || 1,

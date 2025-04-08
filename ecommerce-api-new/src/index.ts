@@ -14,7 +14,7 @@ app.use(cookieParser());
 app.use(
 	cors({
 		// origin: "https://ecommerce-vercel-client.vercel.app",
-		origin: '*',
+		origin: process.env.FRONTEND_URL,
 		credentials: true, // ✅ Allows cookies
 	})
 );

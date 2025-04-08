@@ -6,6 +6,11 @@ export const fetchClientSecret = async (
 	cart: any[],
 	customerId: string
 ): Promise<string> => {
+	console.log('Sending request to create checkout session with:', {
+		cart,
+		customerId,
+	});
+
 	try {
 		const response = await axios.post(
 			`${API_URL}/create-checkout-session`,

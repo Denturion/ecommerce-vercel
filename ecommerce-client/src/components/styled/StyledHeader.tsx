@@ -6,9 +6,23 @@ export const StyledHeader = styled.header`
 	align-items: center;
 	padding: 20px;
 	background-color: black;
-	color: red;
+	color: white;
 	padding-left: 5rem;
 	padding-right: 5rem;
+
+	.search-container {
+		position: absolute;
+		left: 50%;
+		transform: translateX(-50%);
+		display: flex;
+		justify-content: center;
+		max-width: 30vw;
+	}
+
+	h1 {
+		margin-left: 0;
+		margin-right: 0;
+	}
 `;
 
 export const Nav = styled.nav`
@@ -19,8 +33,6 @@ export const Nav = styled.nav`
 export const CartIconContainer = styled.div`
 	display: flex;
 	align-items: center;
-	position: relative;
-
 	a {
 		color: red;
 	}

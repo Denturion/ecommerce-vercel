@@ -60,16 +60,7 @@ export const AdminLogin = () => {
 						placeholder='Lösenord'
 					></FormInput>
 
-					<button
-						type='submit'
-						style={{
-							fontFamily: 'Fraunces',
-							background: '#B79C63',
-							color: 'black',
-						}}
-					>
-						Logga in
-					</button>
+					<button type='submit'>Logga in</button>
 				</AdminLoginForm>
 				{error && <ErrorMessage>{error}</ErrorMessage>}
 			</AdminLoginWrapper>

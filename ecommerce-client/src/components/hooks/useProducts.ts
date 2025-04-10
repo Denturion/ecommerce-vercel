@@ -10,12 +10,21 @@ export const useProducts = () => {
 	const [loading, setLoading] = useState<boolean>(true);
 	const [error, setError] = useState<string | null>(null);
 
+	let cachedProducts: IProduct[] | null = null;
+
 	const loadProducts = async () => {
+		if (cachedProducts) {
+			setProducts(cachedProducts);
+			setLoading(false);
+			return;
+		}
 		setLoading(true);
 		setError(null);
 		try {
 			const fetchedProducts = await fetchAllProducts();
 			setProducts(fetchedProducts);
+
+			cachedProducts = fetchedProducts;
 		} catch (error) {
 			setError('Failed to fetch products');
 			console.error(error);

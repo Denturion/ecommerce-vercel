@@ -11,13 +11,28 @@ const app = express();
 // Middleware
 app.use(express.json());
 app.use(cookieParser());
+
+const allowedOrigins = process.env.FRONTEND_URL?.split(',') || [];
+
 app.use(
 	cors({
-		// origin: "https://ecommerce-vercel-client.vercel.app",
-		origin: process.env.FRONTEND_URL,
-		credentials: true, // ✅ Allows cookies
+		origin: (origin, callback) => {
+			if (!origin || allowedOrigins.includes(origin)) {
+				callback(null, true);
+			} else {
+				callback(new Error('Not allowed by CORS'));
+			}
+		},
+		credentials: true, // Allow cookies and credentials
 	})
 );
+
+// app.use(
+// 	cors({
+// 		origin: process.env.FRONTEND_URL,
+// 		credentials: true, // ✅ Allows cookies
+// 	})
+// );
 app.options('*', cors());
 
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);

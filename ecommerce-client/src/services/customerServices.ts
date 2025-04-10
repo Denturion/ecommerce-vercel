@@ -5,9 +5,9 @@ import { ICreateCustomer } from '../components/types/ICreateCustomer';
 const API_URL = import.meta.env.VITE_API_URL;
 export const createCustomer = async (customer: ICreateCustomer) => {
 	try {
-		console.log('Creating customer with data:', customer);
+		// console.log('Creating customer with data:', customer);
 		const response = await axios.post(`${API_URL}/customers`, customer);
-		console.log('Customer created successfully:', response.data);
+		// console.log('Customer created successfully:', response.data);
 		return response.data;
 	} catch (error) {
 		console.error('Error creating customer:', error);

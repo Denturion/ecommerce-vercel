@@ -117,7 +117,7 @@ export const CartPage: React.FC = () => {
 	};
 
 	const handleSubmitCustomerInfo = async () => {
-		console.log('handleSubmitCustomerInfo triggered');
+		// console.log('handleSubmitCustomerInfo triggered');
 
 		if (!validateCustomerInfo()) {
 			return;
@@ -129,7 +129,7 @@ export const CartPage: React.FC = () => {
 			try {
 				const response = await fetchCustomerByEmail(customerInfo.email);
 				customer = response;
-				console.log('Customer already exists:', customer);
+				// console.log('Customer already exists:', customer);
 			} catch (error: any) {
 				if (error.response?.status === 404) {
 					console.log('Customer does not exist, creating a new one...');
@@ -144,7 +144,7 @@ export const CartPage: React.FC = () => {
 						city: customerInfo.city,
 						country: customerInfo.country,
 					});
-					console.log('Created new customer:', customer);
+					// console.log('Created new customer:', customer);
 				} else {
 					console.error('Error checking customer existence:', error);
 					setError('Failed to check customer existence. Please try again.');
@@ -159,8 +159,8 @@ export const CartPage: React.FC = () => {
 				return;
 			}
 
-			console.log('cart', cart);
-			console.log('Customer ID:', customer.id);
+			// console.log('cart', cart);
+			// console.log('Customer ID:', customer.id);
 
 			const orderItems = mapCartToOrderItems(cart);
 			const totalPrice = calculateTotalPrice(cart);
@@ -182,9 +182,9 @@ export const CartPage: React.FC = () => {
 				order_items: orderItems,
 			};
 
-			console.log('Creating order:', newOrder);
+			// console.log('Creating order:', newOrder);
 			const createdOrder = await createOrder(newOrder);
-			console.log('Order created successfully:', createdOrder);
+			// console.log('Order created successfully:', createdOrder);
 
 			const sessionId = await fetchClientSecret(cart, customer.id);
 
@@ -194,17 +194,17 @@ export const CartPage: React.FC = () => {
 				return;
 			}
 
-			console.log('Fetched session ID:', sessionId);
+			// console.log('Fetched session ID:', sessionId);
 
-			console.log('Calling updateOrder with:', createdOrder.id, {
-				payment_id: sessionId,
-			});
+			// console.log('Calling updateOrder with:', createdOrder.id, {
+			// 	payment_id: sessionId,
+			// });
 			await updateOrder(createdOrder.id, {
 				payment_id: sessionId,
 				payment_status: 'Unpaid',
 				order_status: 'Pending',
 			});
-			console.log('Order updated with payment_id', sessionId);
+			// console.log('Order updated with payment_id', sessionId);
 
 			const stripe = await stripePromise;
 			const result = await stripe?.redirectToCheckout({
@@ -238,14 +238,14 @@ export const CartPage: React.FC = () => {
 			}
 
 			const paymentDetails = await fetchPaymentDetails(sessionId);
-			console.log('Fetched payment details:', paymentDetails);
+			// console.log('Fetched payment details:', paymentDetails);
 
 			await updateOrder(paymentDetails.order_id, {
 				payment_status: paymentDetails.payment_status,
 				order_status: 'Pending',
 			});
 
-			console.log('Order updated successfully.');
+			// console.log('Order updated successfully.');
 
 			setOrderSummary({
 				customer: customerInfo,

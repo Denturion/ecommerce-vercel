@@ -77,12 +77,24 @@ app.post('/create-checkout-session', async (req, res) => {
 
 		console.log('Line items for Stripe session:', lineItems);
 
+		// const session = await stripe.checkout.sessions.create({
+		// 	payment_method_types: ['card'],
+		// 	line_items: lineItems,
+		// 	mode: 'payment',
+		// 	success_url: `${process.env.FRONTEND_URL}/success?session_id={CHECKOUT_SESSION_ID}`,
+		// 	cancel_url: `${process.env.FRONTEND_URL}/cart`,
+		// 	client_reference_id: customerId,
+		// });
+
 		const session = await stripe.checkout.sessions.create({
 			payment_method_types: ['card'],
 			line_items: lineItems,
 			mode: 'payment',
-			success_url: `${process.env.FRONTEND_URL}/success?session_id={CHECKOUT_SESSION_ID}`,
-			cancel_url: `${process.env.FRONTEND_URL}/cart`,
+			success_url: success_url.replace(
+				'{CHECKOUT_SESSION_ID}',
+				'{CHECKOUT_SESSION_ID}'
+			),
+			cancel_url,
 			client_reference_id: customerId,
 		});
 

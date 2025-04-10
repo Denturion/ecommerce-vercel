@@ -7,6 +7,7 @@ import {
 } from './styled/StyledHeader';
 import { FaShoppingCart } from 'react-icons/fa';
 import { useCart } from './contexts/CartContext';
+import { SearchBar } from './searchBar';
 
 export const Header = () => {
 	const location = useLocation();
@@ -26,6 +27,7 @@ export const Header = () => {
 			<Link to='/' style={{ textDecoration: 'none', color: 'inherit' }}>
 				<h1>Vanmakt</h1>
 			</Link>
+			<div className='search-container'>{!isAdminRoute && <SearchBar />}</div>
 
 			{location.pathname !== '/admin/adminpage' ? (
 				<CartIconContainer>

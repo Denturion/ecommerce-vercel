@@ -5,6 +5,7 @@ interface CartContextType {
 	cart: IProduct[];
 	addToCart: (product: IProduct) => void;
 	removeFromCart: (productId: number) => void;
+	clearCart: () => void;
 	setCart: React.Dispatch<React.SetStateAction<IProduct[]>>;
 }
 
@@ -30,10 +31,6 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
 		});
 	};
 
-	useEffect(() => {
-		localStorage.setItem('cart', JSON.stringify(cart));
-	}, [cart]);
-
 	const removeFromCart = (productId: number) => {
 		setCart((prevCart) => {
 			const updatedCart = prevCart.filter(
@@ -44,8 +41,18 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
 		});
 	};
 
+	const clearCart = () => {
+		setCart([]);
+		localStorage.setItem('cart', JSON.stringify([]));
+	};
+
+	useEffect(() => {
+		localStorage.setItem('cart', JSON.stringify(cart));
+	}, [cart]);
 	return (
-		<CartContext.Provider value={{ cart, addToCart, removeFromCart, setCart }}>
+		<CartContext.Provider
+			value={{ cart, addToCart, removeFromCart, clearCart, setCart }}
+		>
 			{children}
 		</CartContext.Provider>
 	);

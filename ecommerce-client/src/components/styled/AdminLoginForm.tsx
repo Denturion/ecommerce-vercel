@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const AdminLoginWrapper = styled.div`
-	background: #2a2c2b;
+	background: black;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -11,7 +11,7 @@ export const AdminLoginWrapper = styled.div`
 	width: 100%;
 	position: relative;
 	padding: 1rem 2rem 3rem 2rem;
-	margin-top: 15rem;
+	margin-top: 5rem;
 	margin-left: auto;
 	margin-right: auto;
 
@@ -26,7 +26,7 @@ export const AdminLoginWrapper = styled.div`
 
 export const AdminLoginForm = styled.form`
 	display: flex;
-	margin-top: 2rem;
+
 	flex-direction: column;
 	gap: 1rem;
 	text-align: left;

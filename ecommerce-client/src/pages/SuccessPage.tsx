@@ -1,10 +1,12 @@
 import { useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router';
 import { fetchPaymentDetails } from '../services/stripeServices';
+import { useCart } from '../components/contexts/CartContext';
 
 export const SuccessPage: React.FC = () => {
 	const [searchParams] = useSearchParams();
 	const navigate = useNavigate();
+	const { clearCart } = useCart();
 
 	useEffect(() => {
 		const handleSuccess = async () => {
@@ -18,6 +20,8 @@ export const SuccessPage: React.FC = () => {
 			try {
 				const paymentDetails = await fetchPaymentDetails(sessionId);
 				console.log('Payment details:', paymentDetails);
+
+				clearCart();
 
 				navigate(`/order-summary?session_id=${sessionId}`);
 			} catch (error) {

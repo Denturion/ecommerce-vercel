@@ -8,6 +8,7 @@ import {
 import { FaShoppingCart } from 'react-icons/fa';
 import { useCart } from './contexts/CartContext';
 import { SearchBar } from './searchBar';
+// Changed import because of error
 
 export const Header = () => {
 	const location = useLocation();

@@ -7,7 +7,7 @@ import {
 } from './styled/StyledHeader';
 import { FaShoppingCart } from 'react-icons/fa';
 import { useCart } from './contexts/CartContext';
-import { SearchBar } from './searchBar';
+import { SearchBar } from './SearchBarComponent';
 // Changed import because of error
 
 export const Header = () => {

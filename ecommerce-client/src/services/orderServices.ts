@@ -5,9 +5,9 @@ const API_URL = import.meta.env.VITE_API_URL;
 
 export const createOrder = async (order: ICreateOrder) => {
 	try {
-		console.log('Creating order with data:', order);
+		// console.log('Creating order with data:', order);
 		const response = await axios.post(`${API_URL}/orders`, order);
-		console.log('Order creation response:', response.data);
+		// console.log('Order creation response:', response.data);
 		return response.data;
 	} catch (error) {
 		console.error('Error creating order:');
@@ -18,7 +18,7 @@ export const createOrder = async (order: ICreateOrder) => {
 export const fetchAllOrders = async (): Promise<IOrder[]> => {
 	try {
 		const response = await axios.get(`${API_URL}/orders`);
-		console.log('Fetched orders:', response.data);
+		// console.log('Fetched orders:', response.data);
 
 		return response.data.map((order: IOrder) => ({
 			...order,

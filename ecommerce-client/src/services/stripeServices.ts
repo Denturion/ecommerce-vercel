@@ -6,10 +6,10 @@ export const fetchClientSecret = async (
 	cart: any[],
 	customerId: string
 ): Promise<string> => {
-	console.log('Sending request to create checkout session with:', {
-		cart,
-		customerId,
-	});
+	// console.log('Sending request to create checkout session with:', {
+	// 	cart,
+	// 	customerId,
+	// });
 
 	try {
 		const response = await axios.post(
@@ -51,7 +51,7 @@ export const fetchSessionStatus = async (sessionId: string): Promise<any> => {
 };
 
 export const fetchPaymentDetails = async (sessionId: string): Promise<any> => {
-	console.log('Calling fetchPaymentDetails with sessionId:', sessionId);
+	// console.log('Calling fetchPaymentDetails with sessionId:', sessionId);
 
 	try {
 		const response = await axios.get(`${API_URL}/orders/payment/${sessionId}`, {
@@ -59,7 +59,7 @@ export const fetchPaymentDetails = async (sessionId: string): Promise<any> => {
 				'Content-Type': 'application/json',
 			},
 		});
-		console.log('Response from fetchPaymentDetails:', response.data);
+		// console.log('Response from fetchPaymentDetails:', response.data);
 
 		return response.data;
 	} catch (error) {

@@ -33,6 +33,7 @@ export const Nav = styled.nav`
 export const CartIconContainer = styled.div`
 	display: flex;
 	align-items: center;
+	position: relative;
 	a {
 		color: red;
 	}
